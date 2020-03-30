@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/bundle.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>My To Do List</h1>
+        <form v-on:submit.prevent="saveTask">
+            <label for="new-task">Add a New Task</label>
+            <input id="new-task" type="text" v-model="newTask" required/>
+            <input type="radio" id="high" name="priority" value="high"> 
+            <label for="high">High</label>
+            <input type="radio" id="low" name="priority" value="low"> 
+            <label for="low">Low</label>
+            <button> Save Task</button>
+        </form>
+        <ul>
+            <li v-for="(task, index) in tasks" :class="task.isHigh ? 'high':'low'">
+                <span>{{task.name}}</span>
+                <span v-if="task.isHigh"></span>
+                <span v-if="!task.isHigh"></span>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
